@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: mygamemmo
+      MYSQL_USER: cpardo
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - 3306:3306
+    volumes:
+      - ./insert.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: mygamemmo-mysql-container
