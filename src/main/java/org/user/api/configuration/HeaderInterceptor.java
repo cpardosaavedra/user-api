@@ -20,6 +20,10 @@ public class HeaderInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
+        this.header.setToken(null);
+        this.header.setAppName(null);
+        this.header.setClient(null);
+
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
