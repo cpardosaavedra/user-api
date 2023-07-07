@@ -13,7 +13,6 @@ import org.user.api.domain.LoginResponse;
 import org.user.api.domain.RequestLogin;
 import org.user.api.domain.user.CreateUserRequest;
 import org.user.api.domain.user.CreateUserResponse;
-import org.user.api.domain.user.UserRequest;
 import org.user.api.domain.user.UserResponse;
 import org.user.api.enums.StatusEnum;
 import org.user.api.service.UserService;
