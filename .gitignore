@@ -1,5 +1,65 @@
-# Ignore Gradle project-specific cache directory
-.gradle
+# Archivos de compilación y resultados
+target/
+bin/
+build/
+*.class
+*.war
+*.ea
 
-# Ignore Gradle build output directory
-build
+
+# Archivos IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+/.settings/
+
+# Archivos de dependencias y librerías
+/lib/
+/libs/
+*.jar
+*.war
+*.ear
+!WEB-INF/
+
+# Archivos de generación
+/generated/
+out/
+gen/
+dist/
+.gradle/
+
+# Archivos de configuración de entorno
+.env
+.env.*
+.env.local
+log/
+logs/
+
+# Archivos de respaldo y temporales
+*~
+*.bak
+*.swp
+*.tmp
+
+# Archivos de registro y salida
+*.log
+*.log.*
+*.out
+
+# Archivos de caché y compilación
+.cache/
+.classpath
+.project
+.settings/
+
+# Archivos específicos de editor
+*.vscode/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.tmproj
+
+# Otros archivos innecesarios
+.DS_Store
+Thumbs.db
