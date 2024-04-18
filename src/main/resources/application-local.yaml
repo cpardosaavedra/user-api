@@ -3,7 +3,7 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:mysql://localhost:3306/mygamemmo
+    url: jdbc:mysql://localhost:3306/genericuser
     username: cpardo
     password: admin
   jpa:
