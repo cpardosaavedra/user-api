@@ -1,18 +1,15 @@
 package org.user.api.configuration;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import java.util.Enumeration;
 
 @AllArgsConstructor
-public class HeaderInterceptor extends HandlerInterceptorAdapter {
+public class HeaderInterceptor implements HandlerInterceptor {
 
     private final Header header;
 

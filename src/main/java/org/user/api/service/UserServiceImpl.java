@@ -1,6 +1,7 @@
 package org.user.api.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.user.api.domain.LoginResponse;
 import org.user.api.domain.RequestLogin;
@@ -19,6 +20,8 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public CreateUserResponse createUser(CreateUserRequest createUserRequest) {
@@ -69,7 +72,7 @@ public class UserServiceImpl implements UserService{
                 .name(createUserRequest.getName())
                 .lastName(createUserRequest.getLastName())
                 .nick(createUserRequest.getNick())
-                .password(createUserRequest.getPassword())
+                .password(this.passwordEncoder.encode(createUserRequest.getPassword()))
                 .build();
     }
 }
