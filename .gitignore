@@ -63,3 +63,5 @@ logs/
 # Otros archivos innecesarios
 .DS_Store
 Thumbs.db
+
+./idea/*
