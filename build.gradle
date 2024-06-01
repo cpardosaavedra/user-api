@@ -20,6 +20,14 @@ repositories {
 }
 
 apply from: 'gradle/dependencies.gradle'
+apply from: 'gradle/version.gradle'
+
+version = "${majorVer}.${minorVer}.${patchVer}-${type}"
+
+wrapper {
+    setGradleVersion("8.7")
+    setDistributionType(Wrapper.DistributionType.ALL)
+}
 
 compileJava {
     setSourceCompatibility('17')

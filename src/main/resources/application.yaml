@@ -1,0 +1,5 @@
+name: user-api
+
+server:
+  servlet:
+    context-path: /ws/api/${name}/v1
