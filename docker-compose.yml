@@ -4,7 +4,7 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: mygamemmo
+      MYSQL_DATABASE: user-db
       MYSQL_USER: cpardo
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
@@ -13,8 +13,19 @@ services:
     volumes:
       - ./insert.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - private_private
-    container_name: mygamemmo-mysql-container
+      - user_private
+    container_name: user-api-mysql-container
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8080
+    container_name: user-api-adminer-container
+    depends_on:
+      - mysql
+    networks:
+      - user_private
 
   spring-app:
     build:
@@ -25,13 +36,13 @@ services:
     depends_on:
       - mysql
     networks:
-      - private_private
+      - user_private
     environment:
       MYSQL_USER: cpardo
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
-    container_name: mygamemmo-be-spring-container
+    container_name: user-api-be-spring-container
 
 networks:
-  private_private:
+  user_private:
     driver: bridge
