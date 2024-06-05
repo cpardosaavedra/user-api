@@ -29,4 +29,5 @@ public class User {
     private String email;
     private String nick;
     private String password;
+    private boolean enabled;
 }

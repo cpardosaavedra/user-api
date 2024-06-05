@@ -11,7 +11,6 @@ import org.user.api.domain.user.UserResponse;
 import org.user.api.entity.User;
 import org.user.api.enums.StatusEnum;
 import org.user.api.repository.UserRepository;
-import org.user.api.utils.JwtUtils;
 
 import java.util.Objects;
 
@@ -22,6 +21,8 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final TokenManagerService tokenManager;
 
     @Override
     public CreateUserResponse createUser(CreateUserRequest createUserRequest) {
@@ -36,14 +37,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public LoginResponse login(RequestLogin requestLogin) {
-        User user = this.userRepository
-                .findByUserNameAndPassword(requestLogin.getUserName(),
-                        requestLogin.getPassword());
+        User user = this.userRepository.findByEmail(requestLogin.getUserName());
 
-        if (Objects.nonNull(user)) {
+        if (Objects.nonNull(user) && this.passwordEncoder.matches(requestLogin.getPassword(), user.getPassword())) {
             return LoginResponse.builder()
                     .status(StatusEnum.OK.getValue())
-                    .token(JwtUtils.generateJwt(user.getEmail()))
+                    .token(this.tokenManager.generateJwt(user.getEmail()))
                     .build();
         }
 

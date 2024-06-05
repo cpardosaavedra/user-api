@@ -10,3 +10,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: true
     show-sql: true
+
+jwt:
+  secret: BtkZvurU6Jh6iO/IxXq75v31EMsWjdnO6BwU7s3R1oM=
+  expiration: 300000

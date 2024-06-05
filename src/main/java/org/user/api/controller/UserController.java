@@ -15,8 +15,8 @@ import org.user.api.domain.user.CreateUserRequest;
 import org.user.api.domain.user.CreateUserResponse;
 import org.user.api.domain.user.UserResponse;
 import org.user.api.enums.StatusEnum;
+import org.user.api.service.TokenManagerService;
 import org.user.api.service.UserService;
-import org.user.api.utils.JwtUtils;
 
 import java.util.Objects;
 
@@ -27,6 +27,8 @@ public class UserController {
     private final UserService userService;
 
     private final Header header;
+
+    private final TokenManagerService tokenManagerService;
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LoginResponse> doLogin(@RequestBody RequestLogin requestLogin) {
@@ -55,7 +57,7 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            String email = JwtUtils.getSubjectFromJwt(header.getToken());
+            String email = this.tokenManagerService.getSubjectFromJwt(header.getToken());
 
             return ResponseEntity.ok(this.userService.getUserInformation(email));
         } catch (Exception exception) {

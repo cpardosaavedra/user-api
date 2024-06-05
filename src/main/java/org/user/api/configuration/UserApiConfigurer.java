@@ -17,11 +17,8 @@ public class UserApiConfigurer {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers("/register").permitAll()
+                    .requestMatchers("/register", "/login").permitAll()
                     .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
-                    .defaultSuccessUrl("/", true)
             )
             .logout(logout -> logout.permitAll());
         return http.build();
